@@ -13,3 +13,11 @@ Saved
 *.xcodeproj
 *.xcworkspace
 Build/WindowsNoEditor/FileOpenOrder/CookerOpenOrder.log
+Content/StarterContent/Architecture
+Content/StarterContent/Audio
+Content/StarterContent/Blueprints
+Content/StarterContent/HDRI
+Content/StarterContent/Maps
+Content/StarterContent/Particles
+Content/StarterContent/Props
+Content/StarterContent/Shapes
