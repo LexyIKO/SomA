@@ -23,18 +23,17 @@ AMyCharacter::AMyCharacter()
 
 	// Выключение зависимости камеры от поворота
 	bUseControllerRotationYaw = false;
-	bUseControllerRotationPitch = false;
-	bUseControllerRotationRoll = false;
 
 	// Создание и настройка компонента "SpringArm"
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
-	CameraBoom->TargetArmLength = 600.0f;
+	CameraBoom->SetupAttachment(RootComponent);
+	CameraBoom->TargetArmLength = 1000.0f;
 	CameraBoom->bUsePawnControlRotation = true;
 
 	//Создание и настройка камеры
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
-
+	FollowCamera->bUsePawnControlRotation = false;
 
 	// Настройка управления
 	GetCharacterMovement()->bOrientRotationToMovement = true;
@@ -43,8 +42,6 @@ AMyCharacter::AMyCharacter()
 	GetCharacterMovement()->AirControl = 0.2f;
 	GetCharacterMovement()->MaxWalkSpeed = 800.0f;
 	GetCharacterMovement()->SetWalkableFloorAngle(40);
-
-
 
 }
 
@@ -80,21 +77,17 @@ void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 // Реализация управления
 void AMyCharacter::MoveForward(float Axis) {
 	if ((Controller != NULL) && (Axis != 0.0f) && (bDead != true)) {
-		// Получение напревление движения
 		
 		FVector ForceToAdd = FVector(1, 0, 0) * 800;
 		AddMovementInput(ForceToAdd, Axis);
-
 	}
 }
 
 void AMyCharacter::MoveRight(float Axis) {
 	if ((Controller != NULL) && (Axis != 0.0f) && (bDead != true)) {
-		// Получение напревление движения
 
 		FVector ForceToAdd = FVector(0, 1, 0) * 800;
 		AddMovementInput(ForceToAdd, Axis);
-
 	}
 }
 
