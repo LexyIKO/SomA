@@ -71,30 +71,40 @@ void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	// Бинд ходьбы
 	PlayerInputComponent->BindAxis("MoveForward", this, &AMyCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AMyCharacter::MoveRight);
+
+	// Бинды для камеры
+	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
+	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 }
 
 
 // Реализация управления
 void AMyCharacter::MoveForward(float Axis) {
 	if ((Controller != NULL) && (Axis != 0.0f) && (bDead != true)) {
-		
-		FVector ForceToAdd = FVector(1, 0, 0) * 800;
-		AddMovementInput(ForceToAdd, Axis);
+		const FRotator Rotation = Controller->GetControlRotation();
+		const FRotator YawRotation(0, Rotation.Yaw, 0);
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+		AddMovementInput(Direction, Axis);
 	}
 }
 
 void AMyCharacter::MoveRight(float Axis) {
 	if ((Controller != NULL) && (Axis != 0.0f) && (bDead != true)) {
-
-		FVector ForceToAdd = FVector(0, 1, 0) * 800;
-		AddMovementInput(ForceToAdd, Axis);
+		const FRotator Rotation = Controller->GetControlRotation();
+		const FRotator YawRotation(0, Rotation.Yaw, 0);
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+		AddMovementInput(Direction, Axis);
 	}
 }
 
 void AMyCharacter::Jump() {
-
+	if ((Controller != NULL) && (bDead != true)) {
+		ACharacter::Jump();
+	}
 }
 
 void AMyCharacter::StopJumping() {
-
+	if((Controller != NULL) && (bDead != true)) {
+		ACharacter::StopJumping();
+	}
 }
