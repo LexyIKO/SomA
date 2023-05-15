@@ -6,10 +6,11 @@
 #include "GameFramework/Pawn.h"
 #include "PeopleCPP.h"
 #include "GameFramework/FloatingPawnMovement.h"
+#include "InteractInteface.h"
 #include "QuestNPCCPP.generated.h"
 
 UCLASS()
-class SOMA_API AQuestNPCCPP : public APawn, public PeopleCPP
+class SOMA_API AQuestNPCCPP : public APawn, public PeopleCPP, public IInteractInteface
 {
 	GENERATED_BODY()
 
@@ -29,6 +30,11 @@ public:
 
 	void randomMove();
 	
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+		void Interact();
+	virtual void Interact_Implementation() override;
+	
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
