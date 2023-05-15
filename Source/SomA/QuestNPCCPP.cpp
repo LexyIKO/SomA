@@ -87,3 +87,11 @@ void AQuestNPCCPP::randomMove()
 		
 
 }
+
+void AQuestNPCCPP::Interact_Implementation()
+{
+	FString Message = TEXT("HI");
+	FColor Color = FColor::Green;
+	float DisplayTime = 2.0f;
+	GEngine->AddOnScreenDebugMessage(-1, DisplayTime, Color, Message);
+}
