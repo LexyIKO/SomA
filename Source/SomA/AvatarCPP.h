@@ -34,6 +34,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Camera)
 		class UCameraComponent* Camera;
 
+	// Инвентарь
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Camera)
+		class UInventoryComponent* Inventory;
+
+	UFUNCTION(BlueprintCallable, Category = "Items")
+		void UseItem(class UItem* Item);
+
 	// Методы управление
 	void MoveForward(float Axis);
 	void MoveRight(float Axis);

@@ -8,6 +8,7 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/Controller.h"
+#include "Inventory/Item.h"
 
 
 // Sets default values
@@ -30,6 +31,7 @@ AAvatarCPP::AAvatarCPP()
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
 
+	health = 100.f;
 }
 
 // Called when the game starts or when spawned
@@ -88,3 +90,10 @@ void AAvatarCPP::MoveRight(float Axis)
 	}
 }
 //Конец реализации
+
+void AAvatarCPP::UseItem(class UItem* Item) {
+	if (Item) {
+		Item->Use(this);
+		Item->OnUse(this); // This is for blueprint
+	}
+}
