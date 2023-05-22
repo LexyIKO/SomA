@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "AliveCPP.h"
 #include "PeopleCPP.h"
 #include "GameFramework/FloatingPawnMovement.h"
 #include "AvatarCPP.generated.h"

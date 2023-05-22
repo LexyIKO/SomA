@@ -22,5 +22,4 @@ public:
 protected:
 
 	virtual void Use(class AAvatarCPP* Character) override;
-
 };

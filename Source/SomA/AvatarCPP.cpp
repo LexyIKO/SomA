@@ -9,6 +9,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/Controller.h"
 #include "Inventory/Item.h"
+#include "InventoryComponent.h"
 
 
 // Sets default values
@@ -31,7 +32,8 @@ AAvatarCPP::AAvatarCPP()
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
 
-	health = 100.f;
+	Inventory = CreateDefaultSubobject<UInventoryComponent>("Inventory");
+	Inventory->Capacity = 10;
 }
 
 // Called when the game starts or when spawned

@@ -3,8 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UObject/NoExportTypes.h"
 #include "../AvatarCPP.h"
+#include "UObject/NoExportTypes.h"
 #include "Item.generated.h"
 
 /**
@@ -18,6 +18,13 @@ class SOMA_API UItem : public UObject
 public:
 
 	UItem();
+
+	virtual class UWorld* GetWorld() const { 
+		return World; 
+	}
+
+	UPROPERTY(Transient)
+	class UWorld* World;
 	
 	// Text for using the item (Equip, Eat, etc)
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Item")
@@ -41,14 +48,15 @@ public:
 
 	// Weight of the item
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Item", meta = (ClampMin = 0.0))
-		float Weight;
+		int Weight;
 
 	// The inventory which own item
 	UPROPERTY()
 	class UInventoryComponent* OwningInventory;
 
-	virtual void Use(class AAvatarCPP* Character) PURE_VIRTUAL(UItem, )
+	virtual void Use(class AAvatarCPP* Character);
 
+	// Function to use in BP
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnUse(class AAvatarCPP* Character);
 };

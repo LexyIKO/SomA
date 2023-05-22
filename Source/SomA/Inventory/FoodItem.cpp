@@ -2,9 +2,18 @@
 
 
 #include "FoodItem.h"
+#include "../InventoryComponent.h"
+#include "../AvatarCPP.h"
 
 void UFoodItem::Use(class AAvatarCPP* Character) {
 	if (Character) {
 		Character->health += HealthToHeal;
+
+		if(OwningInventory) {
+			OwningInventory->RemoveItem(this);
+		}
+
 	}
+
+
 }

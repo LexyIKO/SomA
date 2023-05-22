@@ -13,9 +13,10 @@ public:
 	AliveCPP();
 	
 	//Здоровье
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Health")
 	float health;
 
 	//Ф-ия получения урона
+	UFUNCTION(BlueprintCallable, Category = "Damage")
 	void getDamage(int value);
 };
