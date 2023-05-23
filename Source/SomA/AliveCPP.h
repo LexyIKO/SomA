@@ -17,5 +17,5 @@ public:
 	float health;
 
 	//Ф-ия получения урона
-	void getDamage(int value);
+	void getDamage(float value);
 };

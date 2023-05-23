@@ -8,7 +8,7 @@ AliveCPP::AliveCPP()
 	health = 1;
 }
 
-void AliveCPP::getDamage(int value)
+void AliveCPP::getDamage(float value)
 {
 	health -= value;
 }

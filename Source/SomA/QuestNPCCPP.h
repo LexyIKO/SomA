@@ -9,6 +9,7 @@
 #include "InteractInteface.h"
 #include "QuestNPCCPP.generated.h"
 
+
 UCLASS()
 class SOMA_API AQuestNPCCPP : public APawn, public PeopleCPP, public IInteractInteface
 {
@@ -18,22 +19,24 @@ public:
 	// Sets default values for this pawn's properties
 	AQuestNPCCPP();
 
-
+	//Mesh and collision
 	UPROPERTY(EditAnywhere)
 		class UCapsuleComponent* Capsule;
 
 	UPROPERTY(EditAnywhere)
 		class USkeletalMeshComponent* Body;
+	//end
 
-	UPROPERTY(EditAnywhere, Category = Input)
-		class UFloatingPawnMovement* Movement;
+	//Index of NPC for dialoge and other
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		int32 IndexNPC;
 
-	void randomMove();
-	
+
+	/*
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 		void Interact();
 	virtual void Interact_Implementation() override;
-	
+	*/
 
 protected:
 	// Called when the game starts or when spawned
