@@ -5,11 +5,12 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "PeopleCPP.h"
+#include "InteractInteface.h"
 #include "GameFramework/FloatingPawnMovement.h"
 #include "QuestNPCCPP.generated.h"
 
 UCLASS()
-class SOMA_API AQuestNPCCPP : public APawn, public PeopleCPP
+class SOMA_API AQuestNPCCPP : public APawn, public PeopleCPP, public IInteractInteface
 {
 	GENERATED_BODY()
 

@@ -4,12 +4,15 @@
 #include "AvatarCPP.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Components/SphereComponent.h"
 #include "Components/InputComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/Controller.h"
-#include "Inventory/Item.h"
 #include "InventoryComponent.h"
+#include "Inventory/Item.h"
+#include "InteractInteface.h"
+#include <Runtime/Core/Public/Misc/OutputDeviceNull.h>
 
 
 // Sets default values
@@ -29,6 +32,12 @@ AAvatarCPP::AAvatarCPP()
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
 	SpringArm->SetupAttachment(Capsule);
 
+	InteractSphere = CreateDefaultSubobject<USphereComponent>(TEXT("InteractSphere"));
+	InteractSphere->SetupAttachment(Capsule);
+
+	InteractingActor = nullptr;
+	InCollision = false;
+
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
 
@@ -41,6 +50,8 @@ void AAvatarCPP::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	InteractSphere->OnComponentBeginOverlap.AddDynamic(this, &AAvatarCPP::OnInteractionSphereBeginOverlap);
+	InteractSphere->OnComponentEndOverlap.AddDynamic(this, &AAvatarCPP::OnInteractionSphereEndOverlap);
 }
 
 // Called every frame
@@ -69,6 +80,12 @@ void AAvatarCPP::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 
+	// Кнопка взаимодействия
+	PlayerInputComponent->BindAction("Use", IE_Pressed, this, &AAvatarCPP::OnInteractionPressed);
+
+	// Пересечение коллизий
+	InteractSphere->OnComponentBeginOverlap.AddDynamic(this, &AAvatarCPP::OnInteractionSphereBeginOverlap);
+	InteractSphere->OnComponentEndOverlap.AddDynamic(this, &AAvatarCPP::OnInteractionSphereEndOverlap);
 }
 
 //Реализация ходьбы
@@ -97,5 +114,31 @@ void AAvatarCPP::UseItem(class UItem* Item) {
 	if (Item) {
 		Item->Use(this);
 		Item->OnUse(this); // This is for blueprint
+	}
+}
+
+void AAvatarCPP::OnInteractionPressed()
+{
+	if (InCollision && InteractingActor)
+	{
+		TArray<FString> EmptyArgs; 
+		FOutputDeviceNull ar; 
+
+		InteractingActor->CallFunctionByNameWithArguments(TEXT("Interact"), ar, nullptr, true);
+	}
+}
+
+void AAvatarCPP::OnInteractionSphereBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	InteractingActor = OtherActor;
+	InCollision = true;
+}
+
+void AAvatarCPP::OnInteractionSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	if (OtherActor == InteractingActor)
+	{
+		InteractingActor = nullptr;
+		InCollision = false;
 	}
 }

@@ -42,6 +42,22 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Items")
 		void UseItem(class UItem* Item);
 
+	//Взаимодействие
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = InteractSphere)
+		class USphereComponent* InteractSphere;
+
+	UFUNCTION(BlueprintCallable, Category = "Interact")
+		void OnInteractionPressed();
+
+	UFUNCTION(BlueprintCallable, Category = "Interact")
+		void OnInteractionSphereBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	UFUNCTION(BlueprintCallable, Category = "Interact")
+		void OnInteractionSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+
+	AActor* InteractingActor;
+	bool InCollision;
+
 	// Методы управление
 	void MoveForward(float Axis);
 	void MoveRight(float Axis);
