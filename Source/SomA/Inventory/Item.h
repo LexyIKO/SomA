@@ -46,10 +46,6 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Item", meta = (MultiLine = true))
 		FText ItemDescription;
 
-	// Weight of the item
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Item", meta = (ClampMin = 0.0))
-		int Weight;
-
 	// The inventory which own item
 	UPROPERTY()
 	class UInventoryComponent* OwningInventory;
