@@ -4,7 +4,6 @@
 #include "Item.h"
 
 UItem::UItem() {
-	Weight = 1;
 	ItemDisplayName = FText::FromString("Item");
 	UseActionText = FText::FromString("Use");
 }

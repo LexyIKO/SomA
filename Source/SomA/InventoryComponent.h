@@ -22,8 +22,10 @@ public:
 	virtual void BeginPlay() override;
 
 	// Adding item in the inventory
+	UFUNCTION(BlueprintCallable, Category = "Inventory")
 	bool AddItem(class UItem* Item);
 	// Removing item from the inventory
+	UFUNCTION(BlueprintCallable, Category = "Inventory")
 	bool RemoveItem(class UItem* Item);
 
 	UPROPERTY(EditDefaultsOnly, Category = "Inventory")
