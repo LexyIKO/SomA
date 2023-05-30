@@ -5,13 +5,5 @@
 
 void USeedItem::Use(AAvatarCPP* Character)
 {
-	if (Character->InCollision)
-	{
-		if(OwningInventory)
-		{
-			OwningInventory->RemoveItem(this);
-		}
-
-	}
-
+	
 }
