@@ -55,7 +55,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Interact")
 		void OnInteractionSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Interact")
 	AActor* InteractingActor;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Interact")
 	bool InCollision;
 
 	// Методы управление
