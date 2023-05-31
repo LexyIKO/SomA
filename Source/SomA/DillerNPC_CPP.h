@@ -5,10 +5,11 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "PeopleCPP.h"
+#include "InteractInteface.h"
 #include "DillerNPC_CPP.generated.h"
 
 UCLASS()
-class SOMA_API ADillerNPC_CPP : public APawn, public PeopleCPP
+class SOMA_API ADillerNPC_CPP : public APawn, public PeopleCPP, public IInteractInteface
 {
 	GENERATED_BODY()
 

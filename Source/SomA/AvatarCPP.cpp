@@ -44,6 +44,7 @@ AAvatarCPP::AAvatarCPP()
 	Inventory = CreateDefaultSubobject<UInventoryComponent>("Inventory");
 	Inventory->Capacity = 10;
 
+	MoneyCount = 0;
 }
 
 // Called when the game starts or when spawned

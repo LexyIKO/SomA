@@ -11,6 +11,11 @@ ADillerNPC_CPP::ADillerNPC_CPP()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	Capsule = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsule"));
+	SetRootComponent(Capsule);
+
+	Body = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Body"));
+	Body->SetupAttachment(Capsule);
 }
 
 // Called when the game starts or when spawned
@@ -19,11 +24,7 @@ void ADillerNPC_CPP::BeginPlay()
 	Super::BeginPlay();
 	
 
-	Capsule = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsule"));
-	SetRootComponent(Capsule);
 
-	Body = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Body"));
-	Body->SetupAttachment(Capsule);
 }
 
 // Called every frame

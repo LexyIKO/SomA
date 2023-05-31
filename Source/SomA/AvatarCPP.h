@@ -27,6 +27,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float AvatarHealth;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		int MoneyCount;
+
 	UPROPERTY(EditAnywhere, Category = Input)
 		class UFloatingPawnMovement* Movement;
 
