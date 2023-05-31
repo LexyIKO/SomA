@@ -43,6 +43,7 @@ AAvatarCPP::AAvatarCPP()
 
 	Inventory = CreateDefaultSubobject<UInventoryComponent>("Inventory");
 	Inventory->Capacity = 10;
+
 }
 
 // Called when the game starts or when spawned
@@ -58,6 +59,8 @@ void AAvatarCPP::BeginPlay()
 void AAvatarCPP::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	AvatarHealth = health;
 
 
 	//Постоянное падение

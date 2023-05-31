@@ -28,8 +28,6 @@ public:
 	UPROPERTY(EditAnywhere, Category = Input)
 		class UFloatingPawnMovement* Movement;
 
-	void randomMove();
-	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

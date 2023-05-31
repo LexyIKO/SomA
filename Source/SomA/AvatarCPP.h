@@ -24,6 +24,9 @@ public:
 	UPROPERTY(EditAnywhere)
 		class USkeletalMeshComponent* Body;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float AvatarHealth;
+
 	UPROPERTY(EditAnywhere, Category = Input)
 		class UFloatingPawnMovement* Movement;
 

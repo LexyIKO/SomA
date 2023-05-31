@@ -12,5 +12,7 @@ class SOMA_API PeopleCPP : public AliveCPP
 public:
 	PeopleCPP();
 
+
+
 	void speak();
 };

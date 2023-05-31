@@ -35,10 +35,6 @@ void AQuestNPCCPP::BeginPlay()
 void AQuestNPCCPP::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	randomMove();
-
-	
 	
 }
 
@@ -49,41 +45,3 @@ void AQuestNPCCPP::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 }
 
-void AQuestNPCCPP::randomMove()
-{
-	srand(time(0));
-	int dir = rand() % 9;
-	
-	switch (dir) {
-		case 1:
-			if (health != 0) {
-				const FRotator Rotation = GetActorRotation();
-				const FRotator YawRotation(0, Rotation.Yaw, 0);
-				const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-				AddMovementInput(Direction, 0.1);
-			}
-		case 2:
-			if (health != 0) {
-				const FRotator Rotation = GetActorRotation();
-				const FRotator YawRotation(0, Rotation.Yaw, 0);
-				const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-				AddMovementInput(Direction, -0.1);
-			}
-		case 3:
-			if (health != 0) {
-				const FRotator Rotation = GetActorRotation();
-				const FRotator YawRotation(0, Rotation.Pitch, 0);
-				const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-				AddMovementInput(Direction, 0.1);
-			}
-		case 4:
-			if (health != 0) {
-				const FRotator Rotation = GetActorRotation();
-				const FRotator YawRotation(0, Rotation.Pitch, 0);
-				const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-				AddMovementInput(Direction, -0.1);
-			}
-	}
-		
-
-}
