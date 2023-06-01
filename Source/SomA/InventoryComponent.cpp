@@ -12,6 +12,7 @@ UInventoryComponent::UInventoryComponent()
 	PrimaryComponentTick.bCanEverTick = true;
 
 	Capacity = 10;
+	Index = 0;
 }
 
 
@@ -50,4 +51,15 @@ bool UInventoryComponent::RemoveItem(UItem* Item)
 		return true;
 	}
 	return false;
+}
+
+int UInventoryComponent::FindItemIndex(UItem* Item)
+{
+	for (auto& CurrentItem : Items) {
+		if (CurrentItem->ID == Item->ID) {
+			return Index;
+		}
+		Index++;
+	}
+	return -1;
 }

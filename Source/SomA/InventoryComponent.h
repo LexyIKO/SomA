@@ -27,6 +27,9 @@ public:
 	// Removing item from the inventory
 	UFUNCTION(BlueprintCallable, Category = "Inventory")
 	bool RemoveItem(class UItem* Item);
+	UFUNCTION(BlueprintCallable, Category = "Inventory")
+	int FindItemIndex(class UItem* Item);
+	int Index;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Inventory")
 		int Capacity;

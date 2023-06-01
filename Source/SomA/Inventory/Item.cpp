@@ -6,6 +6,7 @@
 UItem::UItem() {
 	ItemDisplayName = FText::FromString("Item");
 	UseActionText = FText::FromString("Use");
+	ID = 0;
 }
 
 void UItem::Use(AAvatarCPP* Character) {
