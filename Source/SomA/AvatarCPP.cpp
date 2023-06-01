@@ -40,11 +40,14 @@ AAvatarCPP::AAvatarCPP()
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
+	Camera->bUsePawnControlRotation = true;
 
 	Inventory = CreateDefaultSubobject<UInventoryComponent>("Inventory");
 	Inventory->Capacity = 10;
 
 	MoneyCount = 0;
+
+	AvatarHealth = health;
 }
 
 // Called when the game starts or when spawned
@@ -61,9 +64,7 @@ void AAvatarCPP::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	AvatarHealth = health;
-
-
+	
 	//Постоянное падение
 	const FRotator Rotation = Controller->GetControlRotation();
 	const FRotator YawRotation(0, Rotation.Yaw, 0);

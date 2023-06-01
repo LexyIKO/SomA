@@ -7,7 +7,7 @@
 
 void UFoodItem::Use(class AAvatarCPP* Character) {
 	if (Character) {
-		Character->health += HealthToHeal;
+		Character->AvatarHealth += HealthToHeal;
 
 		if(OwningInventory) {
 			OwningInventory->RemoveItem(this);
